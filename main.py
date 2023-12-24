@@ -1,16 +1,21 @@
 import requests
 import os
 import shutil
+import time
 
 def завантажити_файл(url, назва_файлу):
     response = requests.get(url)
     if response.status_code == 200:
         with open(назва_файлу, 'wb') as file:
             file.write(response.content)
-        print(f"Файл {назва_файлу} завантажено успішно.")
+        os.system('cls')
+        print(f">>> GD Official Music Patch")
+        print(f">>> White Heart Dev / Oleh Liubchenko")
+        print(f"")
+        print(f">>> {назва_файлу} / Завантажено успішно.")
         return назва_файлу
     else:
-        print(f"Не вдалося завантажити файл {назва_файлу}.")
+        print(f">>> {назва_файлу} / Не завантажено.")
         return None
 
 urls = [
@@ -43,20 +48,86 @@ for url, назва_файлу in urls:
 диски = ['C:', 'D:', 'E:', 'F:', 'G:', 'H:', 'I:', 'J:', 'K:', 'L:', 'M:', 'N:', 'O:', 'P:', 'Q:', 'R:', 'S:', 'T:', 'U:', 'V:', 'W:', 'X:', 'Y:', 'Z:']
 
 for диск in диски:
-    поточний_шлях = f"{диск}\\SteamLibrary\\steamapps\\common\\Geometry Dash\\Resources"
-    if os.path.exists(поточний_шлях):
-        шлях_до_папки_SteamLibrary = поточний_шлях
+    можливий_шлях_до_ресурсів = os.path.join(диск, 'SteamLibrary', 'steamapps', 'common', 'Geometry Dash', 'Resources')
+    if os.path.exists(можливий_шлях_до_ресурсів):
+        шлях_до_папки_SteamLibrary = можливий_шлях_до_ресурсів
+        os.system('cls')
+        print(f">>> GD Official Music Patch")
+        print(f">>> White Heart Dev / Oleh Liubchenko")
+        print(f"")
+        print(f">>> {можливий_шлях_до_ресурсів} / Визначено.")
+        time.sleep(2.0)
         break
+
+if not шлях_до_папки_SteamLibrary:
+    можливий_шлях_до_ресурсів = 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\Geometry Dash\\Resources'
+    if os.path.exists(можливий_шлях_до_ресурсів):
+        шлях_до_папки_SteamLibrary = можливий_шлях_до_ресурсів
+        os.system('cls')
+        print(f">>> GD Official Music Patch")
+        print(f">>> White Heart Dev / Oleh Liubchenko")
+        print(f"")
+        print(f">>> {можливий_шлях_до_ресурсів} / Визначено.")
+        time.sleep(2.0)
 
 if шлях_до_папки_SteamLibrary:
     for назва_файлу in завантажені_файли:
         шлях_до_файлу = os.path.join(os.getcwd(), назва_файлу)
         if os.path.exists(шлях_до_файлу):
             shutil.copy(шлях_до_файлу, шлях_до_папки_SteamLibrary)
-            print(f"Файл {назва_файлу} скопійовано до папки SteamLibrary.")
+            os.system('cls')
+            print(f">>> GD Official Music Patch")
+            print(f">>> White Heart Dev / Oleh Liubchenko")
+            print(f"")
+            print(f">>> {назва_файлу} / Скопійовано.")
+            time.sleep(0.5)
             os.remove(шлях_до_файлу)
-            print(f"Файл {назва_файлу} видалено.")
+            print(f">>> {назва_файлу} / Видалено.")
+            time.sleep(0.5)
         else:
-            print(f"Не вдалося знайти файл {назва_файлу} для копіювання.")
+            os.system('cls')
+            print(f">>> GD Official Music Patch")
+            print(f">>> White Heart Dev / Oleh Liubchenko")
+            print(f"")
+            print(f">>> {назва_файлу} / Не знайдено.")
+            time.sleep(0.5)
+        os.system('cls')
+    print(f">>> GD Official Music Patch")
+    print(f">>> White Heart Dev / Oleh Liubchenko")
+    print(f"")
+    print(f">>> Патч виконано.")
+    time.sleep(2.0)
+    os.system('cls')
+    print(f">>> GD Official Music Patch")
+    print(f">>> White Heart Dev / Oleh Liubchenko")
+    print(f"")
+    print(f">>> Завершення програми.")
+    time.sleep(2.0)
 else:
-    print("Не вдалося знайти папку SteamLibrary на жодному з дисків.")
+    os.system('cls')
+    print(f">>> GD Official Music Patch")
+    print(f">>> White Heart Dev / Oleh Liubchenko")
+    print(f"")
+    print(">>> Не вдалося знайти папку SteamLibrary на жодному з дисків.")
+    time.sleep(0.5)
+    for назва_файлу in завантажені_файли:
+        шлях_до_файлу = os.path.join(os.getcwd(), назва_файлу)
+        if os.path.exists(шлях_до_файлу):
+            os.remove(шлях_до_файлу)
+            os.system('cls')
+            print(f">>> GD Official Music Patch")
+            print(f">>> White Heart Dev / Oleh Liubchenko")
+            print(f"")
+            print(f">>> {назва_файлу} / Видалено.")
+    os.system('cls')
+    print(f">>> GD Official Music Patch")
+    print(f">>> White Heart Dev / Oleh Liubchenko")
+    print(f"")
+    print(f">>> Патч не виконано.")
+    time.sleep(2.0)
+    os.system('cls')
+    print(f">>> GD Official Music Patch")
+    print(f">>> White Heart Dev / Oleh Liubchenko")
+    print(f"")
+    print(f">>> Завершення програми.")
+    time.sleep(2.0)
